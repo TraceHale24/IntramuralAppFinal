@@ -10,15 +10,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.intramuralsappfinal.Tasks.LoginTask;
+import com.example.intramuralsappfinal.models.User;
 import com.example.intramuralsappfinal.models.request.LoginRequest;
 import com.example.intramuralsappfinal.models.response.LoginResponse;
 import com.example.intramuralsappfinal.presenter.LoginPresenter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Contains the minimum UI required to allow the user to login with a hard-coded user. Most or all
@@ -32,6 +41,9 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     private Toast loginInToast;
 
 
+    private FirebaseAuth mAuth;
+
+
     public void openRegisterActivity() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
@@ -39,10 +51,19 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            currentUser.reload();
+        }
 
         presenter = new LoginPresenter(this);
 
@@ -77,11 +98,51 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
                 loginInToast.show();
 
                 // It doesn't matter what values we put here. We will be logged in with a hard-coded dummy user.
-                LoginRequest loginRequest = new LoginRequest(editTextEmail.getText().toString(), editTextPassword.getText().toString());
-                LoginTask loginTask = new LoginTask(presenter, com.example.intramuralsappfinal.LoginActivity.this);
-                loginTask.execute(loginRequest);
+                signIn(editTextEmail.getText().toString(), editTextPassword.getText().toString());
+
             }
         });
+    }
+
+    private void reload() { }
+
+    private void updateUI(FirebaseUser user) {
+
+    }
+
+    private void signIn(String email, String password) {
+        // [START sign_in_with_email]
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                            loginSuccessful(new LoginResponse(new User("Trace", "thale8", "thale8@byu.edu", "9542926910", true)));
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+        // [END sign_in_with_email]
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
     }
 
     @Override

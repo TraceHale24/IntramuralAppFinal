@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "182806327610",
+    "firebase_url": "https://intramurals-8a09e-default-rtdb.firebaseio.com",
+    "project_id": "intramurals-8a09e",
+    "storage_bucket": "intramurals-8a09e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182806327610:android:a0290f2774e9eb04766003",
+        "android_client_info": {
+          "package_name": "com.TylanMcKinney.Intramurals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182806327610-1nd150il75m48j1frrb2tg7p6tisii9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZWtd68uiC_je7NH-9xRyzB-4Gof3QQfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182806327610-1nd150il75m48j1frrb2tg7p6tisii9d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "182806327610-5n1bdu5tkm9no0uur13q4q3meqvkhhqt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.TrevorSchmidt.Intramurals"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182806327610:android:04a1597405a87e9b766003",
+        "android_client_info": {
+          "package_name": "com.example.intramuralsappfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182806327610-1nd150il75m48j1frrb2tg7p6tisii9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZWtd68uiC_je7NH-9xRyzB-4Gof3QQfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182806327610-1nd150il75m48j1frrb2tg7p6tisii9d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "182806327610-5n1bdu5tkm9no0uur13q4q3meqvkhhqt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.TrevorSchmidt.Intramurals"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
