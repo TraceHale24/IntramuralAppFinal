@@ -18,7 +18,14 @@
         android:layout_gravity="center"/>
 
     <EditText
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="200sp"
+        android:layout_height="50sp"
+        android:id="@+id/Name"
+        android:text="Full Name"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+    <EditText
         android:layout_width="200sp"
         android:layout_height="50sp"
         android:id="@+id/NetID"
@@ -31,6 +38,7 @@
         android:layout_height="50sp"
         android:id="@+id/Password"
         android:text="Password"
+        android:inputType="textPassword"
         android:layout_gravity="center"
         android:gravity="center"/>
 
@@ -39,6 +47,7 @@
         android:layout_width="200sp"
         android:layout_height="50sp"
         android:layout_gravity="center"
+        android:inputType="textEmailAddress"
         android:gravity="center"
         android:text="Email" />
 

@@ -26,6 +26,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
 
@@ -33,15 +35,15 @@ import static android.content.ContentValues.TAG;
  * Contains the minimum UI required to allow the user to login with a hard-coded user. Most or all
  * of this should be replaced when the back-end is implemented.
  */
-public class LoginActivity extends AppCompatActivity implements LoginPresenter.View, LoginTask.Observer {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "LoginActivity";
 
-    private LoginPresenter presenter;
     private Toast loginInToast;
 
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
 
     public void openRegisterActivity() {
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     protected void onCreate(Bundle savedInstanceState) {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        getSupportActionBar().hide();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //Toolbar toolbar = findViewById(R.id.toolbar);
@@ -64,8 +68,6 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         if(currentUser != null){
             currentUser.reload();
         }
-
-        presenter = new LoginPresenter(this);
 
         Button loginButton = findViewById(R.id.LoginButton);
 
@@ -121,7 +123,9 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
-                            loginSuccessful(new LoginResponse(new User("Trace", "thale8", "thale8@byu.edu", "9542926910", true)));
+                            String result = mDatabase.child("users").child(user.getUid()).toString();
+                            System.out.println(result);
+                            loginSuccessful();
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -145,25 +149,10 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         }
     }
 
-    @Override
-    public void loginSuccessful(LoginResponse loginResponse) {
+    public void loginSuccessful() {
         Intent intent = new Intent(this, MainActivity.class);
-
-        intent.putExtra(MainActivity.CURRENT_USER_KEY, loginResponse.getUser());
-
         loginInToast.cancel();
         startActivity(intent);
-    }
-
-    @Override
-    public void loginUnsuccessful(LoginResponse loginResponse) {
-        Toast.makeText(this, "Failed to login. " + loginResponse.getMessage(), Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void handleException(Exception exception) {
-        Log.e(LOG_TAG, exception.getMessage(), exception);
-        Toast.makeText(this, "Failed to login because of exception: " + exception.getMessage(), Toast.LENGTH_LONG).show();
     }
 
 }

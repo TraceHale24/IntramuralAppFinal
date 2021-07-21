@@ -31,6 +31,7 @@
         android:layout_height="50sp"
         android:id="@+id/Password"
         android:text="Password"
+        android:inputType="textPassword"
         android:layout_gravity="center"
         android:gravity="center"/>
 
