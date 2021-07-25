@@ -2,6 +2,7 @@
 package com.example.intramuralsappfinal;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextPassword = findViewById(R.id.Password);
 
         TextView editTextRegister = findViewById(R.id.Register);
+        TextView textViewReset = findViewById(R.id.Reset);
         editTextRegister.setClickable(true);
         editTextRegister.setOnClickListener(new View.OnClickListener() {
             /**
@@ -83,6 +85,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openRegisterActivity();
+            }
+        });
+
+        textViewReset.setClickable(true);
+        textViewReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("YOUR EMAIL IS HERE HOES: " + editTextEmail.getText().toString());
+                forgotPassword(editTextEmail.getText().toString());
             }
         });
 
@@ -96,8 +107,8 @@ public class LoginActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View view) {
-                loginInToast = Toast.makeText(com.example.intramuralsappfinal.LoginActivity.this, "Logging In, " + editTextEmail.getText().toString(), Toast.LENGTH_LONG);
-                loginInToast.show();
+                //loginInToast = Toast.makeText(com.example.intramuralsappfinal.LoginActivity.this, "Logging In, " + editTextEmail.getText().toString(), Toast.LENGTH_LONG);
+                //loginInToast.show();
 
                 // It doesn't matter what values we put here. We will be logged in with a hard-coded dummy user.
                 signIn(editTextEmail.getText().toString(), editTextPassword.getText().toString());
@@ -112,6 +123,20 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void forgotPassword(String email) {
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Email Has Been Sent", Toast.LENGTH_LONG).show();
+                } else {
+                    System.out.println(task.getResult());
+                    Toast.makeText(LoginActivity.this, "Failed, Please try again later!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
     private void signIn(String email, String password) {
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
@@ -124,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             String result = mDatabase.child("users").child(user.getUid()).toString();
-                            System.out.println(result);
+                            Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_LONG).show();
                             loginSuccessful();
 
                         } else {
@@ -151,8 +176,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginSuccessful() {
         Intent intent = new Intent(this, MainActivity.class);
-        loginInToast.cancel();
+        //loginInToast.cancel();
         startActivity(intent);
     }
+
+
 
 }

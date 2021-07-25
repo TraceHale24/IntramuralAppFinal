@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                             if(!rButton.getText().toString().equals("Male")) {
                                 isMale = false;
                             }
-                            User newUser = new User(editTextName.getText().toString(), editTextNetID.getText().toString(), editTextEmail.getText().toString(), editTextNumber.getText().toString(), isMale);
+                            User newUser = new User(editTextName.getText().toString(), editTextNetID.getText().toString(), editTextEmail.getText().toString(), editTextNumber.getText().toString(), isMale ? "Male" : "Female", editTextSchool.toString(), null);
                             registerSuccessful();
                         } else {
                             // If sign in fails, display a message to the user.

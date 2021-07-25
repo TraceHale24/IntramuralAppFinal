@@ -11,7 +11,7 @@ import com.example.intramuralsappfinal.models.response.TeamsResponse;
 import java.io.IOException;
 
 public class ServerFacade {
-    User fakeUser = new User("Trace", "thale8", "thale8@byu.edu", "9542926910", true);
+    User fakeUser = new User("Trace", "thale8", "thale8@byu.edu", "9542926910", "Male", "BYU-Provo", null);
     public LoginResponse login(LoginRequest request, String urlPath) throws IOException {
         LoginResponse response = new LoginResponse(fakeUser);
 
@@ -24,7 +24,7 @@ public class ServerFacade {
     }
 
     public TeamsResponse getTeams(TeamsRequest request, String urlPath) throws IOException {
-        TeamsResponse response = new TeamsResponse(fakeUser.getNetId());
+        TeamsResponse response = new TeamsResponse(fakeUser.getNetid());
         return response;
     }
 }

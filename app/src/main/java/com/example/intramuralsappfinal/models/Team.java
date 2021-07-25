@@ -15,12 +15,13 @@ public class Team {
     private ArrayList<Event> schedule;
     private int capacity;
     private ArrayList<User> players;
+    private String sport;
 
     enum Division { Lower, Upper };
     enum TeamType { Male, Female, Coed };
 
     public Team(String name, Division division, TeamType teamType, ArrayList<Event> schedule,
-                int capacity, ArrayList<User> players) {
+                int capacity, ArrayList<User> players, String sport) {
         this.teamId = UUID.randomUUID();
         this.name = name;
         this.division = division;
@@ -28,6 +29,20 @@ public class Team {
         this.schedule = schedule;
         this.capacity = capacity;
         this.players = players;
+        this.sport = sport;
+    }
+
+
+    public void setTeamId(UUID teamId) {
+        this.teamId = teamId;
+    }
+
+    public String getSport() {
+        return sport;
+    }
+
+    public void setSport(String sport) {
+        this.sport = sport;
     }
 
     public UUID getTeamId() {

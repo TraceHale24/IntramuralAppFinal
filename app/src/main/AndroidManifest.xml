@@ -10,7 +10,7 @@
         <activity
             android:name=".RegisterActivity"
             android:label="Register"
-            android:theme="@style/Theme.IntramuralsAppFinal"></activity>
+            android:theme="@style/Theme.IntramuralsAppFinal" />
         <activity
             android:name=".LoginActivity"
             android:label="Login"

@@ -6,67 +6,85 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
-public class User implements Comparable<User>, Serializable {
+public class User implements Serializable {
     private String name;
-    private String netId;
+    private String netid;
     private String email;
-    private String phone;
-    private boolean isMale;
+    private String phoneNumber;
+    private String gender;
+    private String school;
+    private HashMap<String, UserTeam> teams;
 
     public User() { }
 
-    public User(String name, String netId, String email, String phone, boolean isMale) {
+    public User(String name, String netId, String email, String phone, String gender, String school, HashMap<String, UserTeam> UserTeams) {
         this.name = name;
-        this.netId = netId;
+        this.netid = netId;
         this.email = email;
-        this.phone = phone;
-        this.isMale = isMale;
+        this.phoneNumber = phone;
+        this.gender = gender;
+        this.school = school;
+        this.teams = UserTeams;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getNetId() {
-        return this.netId;
+    public String getNetid() {
+        return netid;
     }
 
-    public void setNetId(String netId) {
-        this.netId = netId;
+    public void setNetid(String netid) {
+        this.netid = netid;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPhone() {
-        return this.phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public boolean isIsMale() {
-        return this.isMale;
+    public String getGender() {
+        return gender;
     }
 
-    public boolean getIsMale() {
-        return this.isMale;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public void setIsMale(boolean isMale) {
-        this.isMale = isMale;
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public HashMap<String, UserTeam> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(HashMap<String, UserTeam> UserTeams) {
+        this.teams = UserTeams;
     }
 
     @Override
@@ -78,17 +96,26 @@ public class User implements Comparable<User>, Serializable {
             return false;
         }
         User user = (User) o;
-        return netId.equals(user.netId);
+        return netid.equals(user.netid);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(name, netId, email, phone, isMale);
+        return Objects.hash(name, netid, email, phoneNumber, gender, school);
     }
 
+
     @Override
-    public int compareTo(User o) {
-        return this.getNetId().compareTo(o.getNetId());
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", netid='" + netid + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", gender='" + gender + '\'' +
+                ", school='" + school + '\'' +
+                ", UserTeams=" + teams +
+                '}';
     }
 }
