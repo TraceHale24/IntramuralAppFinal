@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,9 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intramuralsappfinal.R;
+import com.example.intramuralsappfinal.RecyclerViewAdapter;
 import com.example.intramuralsappfinal.models.User;
+import com.example.intramuralsappfinal.models.UserTeam;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
@@ -30,6 +39,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private TextView name, email, netID, school, phoneNumber, gender;
     private User currUser;
+    private RecyclerViewAdapter rva;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -54,6 +64,21 @@ public class ProfileFragment extends Fragment {
                 //Toast.makeText(ProfileFragment.class, user, Toast.LENGTH_LONG).show();
                 System.out.println("THIS IS YOUR PROFILE: " + user.toString());
                 currUser = user;
+                HashMap<String, UserTeam> teams = user.getTeams();
+                List<UserTeam> userTeams = new ArrayList<>();
+                for(String id: teams.keySet()) {
+                   UserTeam temp = new UserTeam(teams.get(id).getName(),teams.get(id).getRole(),teams.get(id).getSportType(),teams.get(id).getTeamType());
+                   userTeams.add(temp);
+                }
+                //System.out.println(userTeams.size());
+                rva = new RecyclerViewAdapter(userTeams);
+                RecyclerView recycler = view.findViewById(R.id.userTeams);
+                //rva.setClickListener();
+                recycler.setAdapter(rva);
+                recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
                 if(currUser != null) {
                     name.setText(currUser.getName());
                     email.setText(currUser.getEmail());
@@ -92,38 +117,10 @@ public class ProfileFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        mAuth = FirebaseAuth.getInstance();
-//        mDatabase = FirebaseDatabase.getInstance();
-//        String userID = mAuth.getCurrentUser().getUid();
+
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         TextView name = (TextView) root.findViewById(R.id.Name);
-//
-//        mDatabase.getReference().child("users").child(userID).addValueEventListener(new ValueEventListener() {
-//
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User user = snapshot.getValue(User.class);
-//                //Toast.makeText(ProfileFragment.class, user, Toast.LENGTH_LONG).show();
-//                System.out.println("THIS IS YOUR PROFILE: " + user.toString());
-//                currUser = user;
-//                if(currUser != null) {
-//                    name.setText(currUser.getName());
-//                }
-//                else {
-//                    name.setText("Trevor Sucks at Smash");
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        }) ;
-//
-//
-//
+
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         root = inflater.inflate(R.layout.fragment_profile, container, false);
