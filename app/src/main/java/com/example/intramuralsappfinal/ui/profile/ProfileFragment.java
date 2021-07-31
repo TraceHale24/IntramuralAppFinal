@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intramuralsappfinal.R;
-import com.example.intramuralsappfinal.RecyclerViewAdapter;
 import com.example.intramuralsappfinal.models.User;
 import com.example.intramuralsappfinal.models.UserTeam;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,8 +22,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +34,6 @@ public class ProfileFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private TextView name, email, netID, school, phoneNumber, gender;
     private User currUser;
-    private RecyclerViewAdapter rva;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -70,12 +64,6 @@ public class ProfileFragment extends Fragment {
                    UserTeam temp = new UserTeam(teams.get(id).getName(),teams.get(id).getRole(),teams.get(id).getSportType(),teams.get(id).getTeamType());
                    userTeams.add(temp);
                 }
-                //System.out.println(userTeams.size());
-                rva = new RecyclerViewAdapter(userTeams);
-                RecyclerView recycler = view.findViewById(R.id.userTeams);
-                //rva.setClickListener();
-                recycler.setAdapter(rva);
-                recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
 
