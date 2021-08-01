@@ -51,11 +51,6 @@ public class UserTeam {
 
     @Override
     public String toString() {
-        return "UserTeam{" +
-                "name='" + name + '\'' +
-                ", role='" + role + '\'' +
-                ", sportType='" + sportType + '\'' +
-                ", teamType='" + teamType + '\'' +
-                '}';
+        return  "Team: " + name + "\nRole: " + role + "\nSport Type: " + sportType + "\nTeam Type: " + teamType + "\n\n";
     }
 }

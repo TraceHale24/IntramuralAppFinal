@@ -5,55 +5,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.profile.ProfileFragment"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="200sp"
-        android:layout_height="50sp"
+        android:layout_width="300sp"
+        android:layout_height="40sp"
         android:id="@+id/Name"
         android:text="Full Name"
+        android:textColor="@color/black"
         android:gravity="center"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="40sp"/>
 
     <TextView
         android:layout_width="200sp"
-        android:layout_height="50sp"
+        android:layout_height="20sp"
         android:id="@+id/NetID"
-        android:text="NetID"
-        android:gravity="center"
-        android:layout_gravity="center"/>
+        android:textColor="@color/black"
+
+        android:text="NetID"/>
+
 
     <TextView
         android:id="@+id/Email"
         android:layout_width="200sp"
-        android:layout_height="50sp"
-        android:layout_gravity="center"
-        android:inputType="textEmailAddress"
-        android:gravity="center"
+        android:layout_height="20sp"
+        android:textColor="@color/black"
+
         android:text="Email" />
 
     <TextView
         android:layout_width="200sp"
-        android:layout_height="50sp"
+        android:layout_height="20sp"
         android:id="@+id/PhoneNumber"
-        android:text="PhoneNumber"
-        android:gravity="center"
-        android:layout_gravity="center"/>
+        android:textColor="@color/black"
+
+        android:text="PhoneNumber"/>
 
     <TextView
         android:id="@+id/School"
         android:layout_width="200sp"
-        android:layout_height="50sp"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:textColor="@color/black"
+
+        android:layout_height="20sp"
         android:text="School" />
     <TextView
         android:id="@+id/Gender"
         android:layout_width="200sp"
-        android:layout_height="50sp"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:textColor="@color/black"
+
+        android:layout_height="20sp"
         android:text="Gender" />
 
     <TextView
@@ -62,19 +66,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        android:text="TEAMS"
+        android:gravity="center"
         android:layout_marginEnd="8dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userTeams"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="match_parent"
+        android:textColor="@color/black"
+
+        android:layout_height="match_parent"/>
 </LinearLayout>

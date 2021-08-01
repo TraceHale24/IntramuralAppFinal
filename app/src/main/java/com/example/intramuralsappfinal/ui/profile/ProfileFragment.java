@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intramuralsappfinal.R;
+import com.example.intramuralsappfinal.UserTeamAdapter;
 import com.example.intramuralsappfinal.models.User;
 import com.example.intramuralsappfinal.models.UserTeam;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +35,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private TextView name, email, netID, school, phoneNumber, gender;
     private User currUser;
+    private RecyclerView recyclerView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class ProfileFragment extends Fragment {
         school = (TextView) view.findViewById(R.id.School);
         phoneNumber = (TextView) view.findViewById(R.id.PhoneNumber);
         gender = (TextView) view.findViewById(R.id.Gender);
-
+        recyclerView = (RecyclerView) view.findViewById(R.id.userTeams);
         mDatabase.getReference().child("users").child(userID).addValueEventListener(new ValueEventListener() {
 
 
@@ -59,12 +61,15 @@ public class ProfileFragment extends Fragment {
                 System.out.println("THIS IS YOUR PROFILE: " + user.toString());
                 currUser = user;
                 HashMap<String, UserTeam> teams = user.getTeams();
-                List<UserTeam> userTeams = new ArrayList<>();
+                ArrayList<UserTeam> userTeams = new ArrayList<>();
                 for(String id: teams.keySet()) {
                    UserTeam temp = new UserTeam(teams.get(id).getName(),teams.get(id).getRole(),teams.get(id).getSportType(),teams.get(id).getTeamType());
                    userTeams.add(temp);
                 }
-
+                UserTeamAdapter uta = new UserTeamAdapter(getContext(),userTeams);
+                LinearLayoutManager llm = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(llm);
+                recyclerView.setAdapter(uta);
 
 
                 if(currUser != null) {
@@ -74,6 +79,7 @@ public class ProfileFragment extends Fragment {
                     school.setText(currUser.getSchool());
                     phoneNumber.setText(currUser.getPhoneNumber());
                     gender.setText(currUser.getGender());
+
 
                 }
                 else {
@@ -97,8 +103,7 @@ public class ProfileFragment extends Fragment {
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                //name.setText(currUser.getName());
-                textView.setText(s);
+                textView.setText("TEAMS");
             }
         });
     }
