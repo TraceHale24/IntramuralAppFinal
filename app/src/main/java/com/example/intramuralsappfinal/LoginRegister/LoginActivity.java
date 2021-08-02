@@ -1,8 +1,7 @@
 
-package com.example.intramuralsappfinal;
+package com.example.intramuralsappfinal.LoginRegister;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,17 +12,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
-import com.example.intramuralsappfinal.Tasks.LoginTask;
-import com.example.intramuralsappfinal.models.User;
-import com.example.intramuralsappfinal.models.request.LoginRequest;
-import com.example.intramuralsappfinal.models.response.LoginResponse;
-import com.example.intramuralsappfinal.presenter.LoginPresenter;
+import com.example.intramuralsappfinal.MainActivity;
+import com.example.intramuralsappfinal.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -107,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View view) {
-                //loginInToast = Toast.makeText(com.example.intramuralsappfinal.LoginActivity.this, "Logging In, " + editTextEmail.getText().toString(), Toast.LENGTH_LONG);
+                //loginInToast = Toast.makeText(com.example.intramuralsappfinal.LoginRegister.LoginActivity.this, "Logging In, " + editTextEmail.getText().toString(), Toast.LENGTH_LONG);
                 //loginInToast.show();
 
                 // It doesn't matter what values we put here. We will be logged in with a hard-coded dummy user.

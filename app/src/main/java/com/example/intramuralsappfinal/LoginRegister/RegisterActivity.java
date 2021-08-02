@@ -1,4 +1,4 @@
-package com.example.intramuralsappfinal;
+package com.example.intramuralsappfinal.LoginRegister;
 
 
 import android.content.Intent;
@@ -17,11 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.intramuralsappfinal.Tasks.RegisterTask;
+import com.example.intramuralsappfinal.MainActivity;
+import com.example.intramuralsappfinal.R;
 import com.example.intramuralsappfinal.models.User;
-import com.example.intramuralsappfinal.models.request.RegisterRequest;
-import com.example.intramuralsappfinal.models.response.RegisterResponse;
-import com.example.intramuralsappfinal.presenter.RegisterPresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -52,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void openLoginActivity() {
-        Intent intent = new Intent(this, com.example.intramuralsappfinal.LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

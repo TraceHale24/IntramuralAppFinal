@@ -8,11 +8,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IntramuralsAppFinal">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".LoginRegister.RegisterActivity"
             android:label="Register"
             android:theme="@style/Theme.IntramuralsAppFinal" />
+        <activity android:name=".ui.profile.UserTeamActivity"
+            android:label="UserTeam"
+            android:theme="@style/Theme.IntramuralsAppFinal"/>
         <activity
-            android:name=".LoginActivity"
+            android:name=".LoginRegister.LoginActivity"
             android:label="Login"
             android:theme="@style/Theme.IntramuralsAppFinal">
             <intent-filter>

@@ -12,8 +12,8 @@
     <TextView
         android:layout_width="300sp"
         android:layout_height="40sp"
-        android:id="@+id/Name"
-        android:text="Full Name"
+        android:id="@+id/TeamName"
+        android:text="Team Name"
         android:textColor="@color/black"
         android:gravity="center"
         android:layout_gravity="center"
@@ -23,42 +23,36 @@
     <TextView
         android:layout_width="200sp"
         android:layout_height="25sp"
-        android:id="@+id/NetID"
+        android:id="@+id/sportType"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:text="NetID"/>
+        android:text="Sport Type"/>
 
 
     <TextView
-        android:id="@+id/Email"
+        android:id="@+id/teamType"
         android:layout_width="200sp"
         android:layout_height="25sp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:text="Email" />
+        android:text="Team Type" />
 
     <TextView
         android:layout_width="200sp"
         android:layout_height="25sp"
-        android:id="@+id/PhoneNumber"
+        android:id="@+id/Division"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:text="PhoneNumber"/>
+        android:text="Division"/>
 
     <TextView
-        android:id="@+id/School"
+        android:id="@+id/capacity"
         android:layout_width="200sp"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:layout_height="25sp"
-        android:text="School" />
-    <TextView
-        android:id="@+id/Gender"
-        android:layout_width="200sp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_height="25sp"
-        android:text="Gender" />
+        android:text="0/15" />
+
 
     <TextView
         android:id="@+id/text_profile"
@@ -67,15 +61,26 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
-        android:text="TEAMS"
+        android:text="PLAYERS"
         android:gravity="center"
         android:layout_marginEnd="8dp"
         android:textSize="20sp" />
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userTeams"
         android:layout_width="match_parent"
         android:textColor="@color/black"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leave"
+        android:id="@+id/leaveTeam"
+        android:background="@android:color/holo_red_dark"/>
+
+
 </LinearLayout>

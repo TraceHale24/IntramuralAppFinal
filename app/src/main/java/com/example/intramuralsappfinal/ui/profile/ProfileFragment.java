@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intramuralsappfinal.R;
-import com.example.intramuralsappfinal.UserTeamAdapter;
 import com.example.intramuralsappfinal.models.User;
 import com.example.intramuralsappfinal.models.UserTeam;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ProfileFragment extends Fragment {
 
@@ -58,7 +56,7 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
                 //Toast.makeText(ProfileFragment.class, user, Toast.LENGTH_LONG).show();
-                System.out.println("THIS IS YOUR PROFILE: " + user.toString());
+                //System.out.println("THIS IS YOUR PROFILE: " + user.toString());
                 currUser = user;
                 HashMap<String, UserTeam> teams = user.getTeams();
                 ArrayList<UserTeam> userTeams = new ArrayList<>();
@@ -74,11 +72,11 @@ public class ProfileFragment extends Fragment {
 
                 if(currUser != null) {
                     name.setText(currUser.getName());
-                    email.setText(currUser.getEmail());
-                    netID.setText(currUser.getNetid());
-                    school.setText(currUser.getSchool());
-                    phoneNumber.setText(currUser.getPhoneNumber());
-                    gender.setText(currUser.getGender());
+                    email.setText("Email: " + currUser.getEmail());
+                    netID.setText("NETID: " + currUser.getNetid());
+                    school.setText("School: " + currUser.getSchool());
+                    phoneNumber.setText("Phone: " + currUser.getPhoneNumber());
+                    gender.setText("Gender: " + currUser.getGender());
 
 
                 }

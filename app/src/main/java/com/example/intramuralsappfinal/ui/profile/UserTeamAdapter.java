@@ -1,6 +1,7 @@
-package com.example.intramuralsappfinal;
+package com.example.intramuralsappfinal.ui.profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.example.intramuralsappfinal.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserTeamAdapter extends RecyclerView.Adapter {
@@ -40,7 +42,14 @@ public class UserTeamAdapter extends RecyclerView.Adapter {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Team Selected", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, arrayList.get(position).toString(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(v.getContext(), UserTeamActivity.class);
+                intent.putExtra("team", (Serializable) arrayList.get(position));
+                context.startActivity(intent);
+
+
+                //Here we need to open up the view of the UserTeam so that the user can *Leave* and view the team info in the page fragment or activity
             }
         });
     }

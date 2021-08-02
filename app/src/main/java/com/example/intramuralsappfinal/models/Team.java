@@ -8,44 +8,44 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Team {
-    private UUID teamId;
+    private String  teamId;
     private String name;
-    private Division division;
-    private TeamType teamType;
+    private String division;
+    private String teamType;
     private ArrayList<Event> schedule;
-    private int capacity;
+    private String capacity;
     private ArrayList<User> players;
-    private String sport;
+    private String sportType;
 
-    enum Division { Lower, Upper };
-    enum TeamType { Male, Female, Coed };
+    public Team() {
+    }
 
-    public Team(String name, Division division, TeamType teamType, ArrayList<Event> schedule,
-                int capacity, ArrayList<User> players, String sport) {
-        this.teamId = UUID.randomUUID();
+    public Team(String name, String division, String  teamType, ArrayList<Event> schedule,
+                String  capacity, ArrayList<User> players, String sportType) {
+        this.teamId = UUID.randomUUID().toString();
         this.name = name;
         this.division = division;
         this.teamType = teamType;
         this.schedule = schedule;
         this.capacity = capacity;
         this.players = players;
-        this.sport = sport;
+        this.sportType = sportType;
     }
 
 
-    public void setTeamId(UUID teamId) {
+    public void setTeamId(String  teamId) {
         this.teamId = teamId;
     }
 
-    public String getSport() {
-        return sport;
+    public String getSportType() {
+        return sportType;
     }
 
-    public void setSport(String sport) {
-        this.sport = sport;
+    public void setSportType(String sportType) {
+        this.sportType = sportType;
     }
 
-    public UUID getTeamId() {
+    public String  getTeamId() {
         return this.teamId;
     }
 
@@ -57,19 +57,17 @@ public class Team {
         this.name = name;
     }
 
-    public Division getDivision() {
+    public String  getDivision() {
         return this.division;
     }
 
-    public void setDivision(Division division) {
-        this.division = division;
-    }
+    public void setDivision(String  division) { this.division = division; }
 
-    public TeamType getTeamType() {
+    public String getTeamType() {
         return this.teamType;
     }
 
-    public void setTeamType(TeamType teamType) {
+    public void setTeamType(String teamType) {
         this.teamType = teamType;
     }
 
@@ -85,11 +83,11 @@ public class Team {
         this.schedule.add(event);
     }
 
-    public int getCapacity() {
+    public String  getCapacity() {
         return this.capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 

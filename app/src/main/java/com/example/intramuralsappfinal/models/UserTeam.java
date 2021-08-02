@@ -1,6 +1,8 @@
 package com.example.intramuralsappfinal.models;
 
-public class UserTeam {
+import java.io.Serializable;
+
+public class UserTeam implements Serializable {
     private String name;
     private String role;
     private String sportType;
@@ -51,6 +53,6 @@ public class UserTeam {
 
     @Override
     public String toString() {
-        return  "Team: " + name + "\nRole: " + role + "\nSport Type: " + sportType + "\nTeam Type: " + teamType + "\n\n";
+        return  "Team: " + name + "\nRole: " + role + "\nSport Type: " + sportType + "\nTeam Type: " + teamType;
     }
 }
