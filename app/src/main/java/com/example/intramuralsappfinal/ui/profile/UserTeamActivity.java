@@ -64,7 +64,7 @@ public class UserTeamActivity extends AppCompatActivity {
                 if(currTeam != null) {
 
                     teamName.setText(currTeam.getName());
-                    sportType.setText("Sport" + currTeam.getSportType());
+                    sportType.setText("Sport: " + currTeam.getSportType());
                     teamType.setText("Team Type: " + currTeam.getTeamType());
                     division.setText("Division: " + currTeam.getDivision());
                     capacity.setText("Capacity: " + currTeam.getCapacity());

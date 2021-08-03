@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Team {
-    private String  teamId;
+    private String teamId;
     private String name;
     private String division;
     private String teamType;
@@ -16,12 +16,14 @@ public class Team {
     private String capacity;
     private ArrayList<User> players;
     private String sportType;
+    private String captain;
+    private String captainId;
 
     public Team() {
     }
 
     public Team(String name, String division, String  teamType, ArrayList<Event> schedule,
-                String  capacity, ArrayList<User> players, String sportType) {
+                String  capacity, ArrayList<User> players, String sportType, String captain, String captainId) {
         this.teamId = UUID.randomUUID().toString();
         this.name = name;
         this.division = division;
@@ -30,8 +32,25 @@ public class Team {
         this.capacity = capacity;
         this.players = players;
         this.sportType = sportType;
+        this.captain = captain;
+        this.captainId = captainId;
     }
 
+    public String getCaptain() {
+        return captain;
+    }
+
+    public void setCaptain(String captain) {
+        this.captain = captain;
+    }
+
+    public String getCaptainId() {
+        return captainId;
+    }
+
+    public void setCaptainId(String captainId) {
+        this.captainId = captainId;
+    }
 
     public void setTeamId(String  teamId) {
         this.teamId = teamId;
@@ -105,6 +124,22 @@ public class Team {
 
     public void removePlayer(User player) {
         this.players.remove(player);
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "teamId='" + teamId + '\'' +
+                ", name='" + name + '\'' +
+                ", division='" + division + '\'' +
+                ", teamType='" + teamType + '\'' +
+                ", schedule=" + schedule +
+                ", capacity='" + capacity + '\'' +
+                ", players=" + players +
+                ", sportType='" + sportType + '\'' +
+                ", captain='" + captain + '\'' +
+                ", captainId='" + captainId + '\'' +
+                '}';
     }
 
     @Override

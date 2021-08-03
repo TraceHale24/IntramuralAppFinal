@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="200sp"
+        android:layout_height="30sp"
+        android:textSize="20sp"
+        android:id="@+id/TeamName"
+        android:text="Team Name"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/captain"
+        android:layout_width="200sp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_height="30sp"
+        android:text="Team Captain" />
+
+    <TextView
+        android:layout_width="200sp"
+        android:layout_height="30sp"
+        android:id="@+id/sportType"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="Sport Type"/>
+
+
+    <TextView
+        android:id="@+id/teamType"
+        android:layout_width="200sp"
+        android:layout_height="30sp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="Team Type" />
+
+    <TextView
+        android:layout_width="200sp"
+        android:layout_height="30sp"
+        android:id="@+id/Division"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="Division"/>
+
+    <TextView
+        android:id="@+id/capacity"
+        android:layout_width="200sp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_height="30sp"
+        android:text="0/15" />
+
+
+
+
+</LinearLayout>
