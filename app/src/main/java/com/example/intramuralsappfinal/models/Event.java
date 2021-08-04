@@ -5,12 +5,13 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Event {
+public class Event implements Serializable {
     private String location;
     private LocalDateTime dateTime;
 
@@ -38,11 +39,28 @@ public class Event {
         this.dateTime = dateTime;
     }
 
+    public String formatTime(int time) {
+        if(time > 12) {
+            return String.valueOf(time - 12);
+        }
+        return String.valueOf(time);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public String toString() {
-        return "Event{" +
-                ", location='" + location + '\'' +
-                ", dateTime=" + dateTime +
-                '}';
+        String pOrA = " PM";
+        if(dateTime.getHour() < 12) {
+           pOrA = " AM";
+        }
+
+        String minute = "00";
+        if(!String.valueOf(dateTime.getMinute()).equals("0")) {
+            minute = String.valueOf(dateTime.getMinute());
+        }
+        return "Time: " + formatTime(dateTime.getHour()) + ":" +minute + pOrA + "\n" +
+                "Date:" + dateTime.getMonthValue() + "/" + dateTime.getDayOfMonth() + "\n" +
+                "Location: " + location;
+
     }
 }

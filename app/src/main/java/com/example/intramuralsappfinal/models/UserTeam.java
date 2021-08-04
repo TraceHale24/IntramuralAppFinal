@@ -12,15 +12,17 @@ public class UserTeam implements Serializable {
     private String sportType;
     private String teamType;
     private String division;
+    private String teamId;
     private ArrayList<Event> schedule;
 
-    public UserTeam(String name, String role, String sportType, String teamType, String division,ArrayList<Event> schedule) {
+    public UserTeam(String name, String role, String sportType, String teamType, String division,String teamId, ArrayList<Event> schedule) {
         this.name = name;
         this.role = role;
         this.sportType = sportType;
         this.teamType = teamType;
         this.division = division;
         this.schedule = schedule;
+        this.teamId = teamId;
     }
 
     public UserTeam() {
@@ -68,6 +70,18 @@ public class UserTeam implements Serializable {
 
     public void setSchedule(ArrayList<Event> schedule) {
         this.schedule = schedule;
+    }
+
+    public String getTeamId() {
+        return this.teamId;
+    }
+
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
+    }
+
+    public ArrayList<Event> getSchedule() {
+        return schedule;
     }
 
     @Override

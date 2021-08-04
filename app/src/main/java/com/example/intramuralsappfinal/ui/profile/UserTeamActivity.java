@@ -3,6 +3,8 @@ package com.example.intramuralsappfinal.ui.profile;
 import android.os.Bundle;
 
 import com.example.intramuralsappfinal.R;
+import com.example.intramuralsappfinal.ScheduleAdapter;
+import com.example.intramuralsappfinal.models.Event;
 import com.example.intramuralsappfinal.models.Team;
 import com.example.intramuralsappfinal.models.User;
 import com.example.intramuralsappfinal.models.UserTeam;
@@ -19,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.Button;
@@ -28,9 +32,11 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class UserTeamActivity extends AppCompatActivity {
-    private TextView teamName, sportType, teamType, division, capacity;
+    private TextView teamName, sportType, teamType, division;
+    private RecyclerView recyclerView;
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private Team currTeam;
@@ -46,46 +52,33 @@ public class UserTeamActivity extends AppCompatActivity {
         sportType = (TextView) findViewById(R.id.sportType);
         teamType = (TextView) findViewById(R.id.teamType);
         division = (TextView) findViewById(R.id.Division);
-        capacity = (TextView) findViewById(R.id.capacity);
+        recyclerView = (RecyclerView) findViewById(R.id.teamSchedule);
 
 
         UserTeam team = (UserTeam) getIntent().getSerializableExtra("team");
         System.out.println(team.getName());
         Button button = (Button) findViewById(R.id.leaveTeam);
-        mDatabase.getReference().child("teams").child(team.getName()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //User user = snapshot.getValue(User.class);
-                User user = snapshot.getValue(User.class);
-                //Toast.makeText(ProfileFragment.class, user, Toast.LENGTH_LONG).show();
-                //System.out.println("THIS IS YOUR PROFILE: " + user.toString());
-                currUser = user;
-                currTeam = snapshot.getValue(Team.class);
-                if(currTeam != null) {
+        String teamID = team.getTeamId();
+        teamName.setText(team.getName());
+        sportType.setText("Sport: " + team.getSportType());
+        teamType.setText("Team Type: " + team.getTeamType());
+        division.setText("Division: " + team.getDivision());
+        ArrayList<Event> games = team.getSchedule();
 
-                    teamName.setText(currTeam.getName());
-                    sportType.setText("Sport: " + currTeam.getSportType());
-                    teamType.setText("Team Type: " + currTeam.getTeamType());
-                    division.setText("Division: " + currTeam.getDivision());
-                    capacity.setText("Capacity: " + currTeam.getCapacity());
-                }
-            }
+        ScheduleAdapter sa = new ScheduleAdapter(this, games);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(sa);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 //Code to leave team
                 //TODO: We need to get the USERSID in the DB and then the list of teams from that user, and then remove based on team name... NOt sure where to go from here righ tnow!
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                 Query teamQuery = ref.child("users").child("teams").orderByChild("name").equalTo(currTeam.getName());
-                System.out.println(ref.child("users").child("teams").orderByChild("name").equalTo(currTeam.getName()));
+                //System.out.println(ref.child("users").child("teams").orderByChild("name").equalTo(currTeam.getName()));
                 teamQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

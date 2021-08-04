@@ -45,14 +45,6 @@
         android:textSize="20sp"
         android:text="Division"/>
 
-    <TextView
-        android:id="@+id/capacity"
-        android:layout_width="200sp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_height="25sp"
-        android:text="0/15" />
-
 
     <TextView
         android:id="@+id/text_profile"
@@ -61,15 +53,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
-        android:text="PLAYERS"
+        android:text="Schedule"
         android:gravity="center"
         android:layout_marginEnd="8dp"
         android:textSize="20sp" />
 
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/userTeams"
+        android:id="@+id/teamSchedule"
         android:layout_width="match_parent"
         android:textColor="@color/black"
         android:layout_height="wrap_content"

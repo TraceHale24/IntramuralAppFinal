@@ -76,6 +76,7 @@ public class HomeFragment extends Fragment {
                     String sportType = roughTeams.get("sportType").toString();
                     String teamType = roughTeams.get("teamType").toString();
                     String teamName = roughTeams.get("name").toString();
+                    String teamId = roughTeams.get("teamId").toString();
                     ArrayList<Event> schedule = new ArrayList<>();
                     Map<String, Object> roughSchedule = (HashMap<String, Object>) roughTeams.get("schedule");
                     for(String scheduleKey : roughSchedule.keySet()) {
@@ -84,7 +85,7 @@ public class HomeFragment extends Fragment {
                         Event temp = new Event(roughSchedule.get(scheduleKey).toString(), dateTime);
                         schedule.add(temp);
                     }
-                    UserTeam temp = new UserTeam(teamName, role, sportType, teamType, division,  schedule);
+                    UserTeam temp = new UserTeam(teamName, role, sportType, teamType, division, teamId, schedule);
                     teams.add(temp);
                     System.out.println(roughTeams.get(key));
                 }
@@ -125,22 +126,3 @@ public class HomeFragment extends Fragment {
         return root;
     }
 }
-
-
-/*
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        TextView name = (TextView) root.findViewById(R.id.Name);
-
-        profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
-        root = inflater.inflate(R.layout.fragment_profile, container, false);
-        final TextView textView = root.findViewById(R.id.text_profile);
-        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //name.setText(currUser.getName());
-                textView.setText(s);
-            }
-        });
-        return root;
- */
