@@ -14,7 +14,7 @@ public class Team {
     private String teamType;
     private ArrayList<Event> schedule;
     private String capacity;
-    private ArrayList<User> players;
+    private ArrayList<User> members ;
     private String sportType;
     private String captain;
     private String captainId;
@@ -23,14 +23,14 @@ public class Team {
     }
 
     public Team(String name, String division, String  teamType, ArrayList<Event> schedule,
-                String  capacity, ArrayList<User> players, String sportType, String captain, String captainId) {
+                String  capacity, ArrayList<User> members , String sportType, String captain, String captainId) {
         this.teamId = UUID.randomUUID().toString();
         this.name = name;
         this.division = division;
         this.teamType = teamType;
         this.schedule = schedule;
         this.capacity = capacity;
-        this.players = players;
+        this.members  = members ;
         this.sportType = sportType;
         this.captain = captain;
         this.captainId = captainId;
@@ -110,20 +110,20 @@ public class Team {
         this.capacity = capacity;
     }
 
-    public ArrayList<User> getPlayers() {
-        return this.players;
+    public ArrayList<User> getmembers () {
+        return this.members ;
     }
 
-    public void setPlayers(ArrayList<User> players) {
-        this.players = players;
+    public void setmembers (ArrayList<User> members ) {
+        this.members  = members ;
     }
 
     public void addPlayer(User player) {
-        this.players.add(player);
+        this.members .add(player);
     }
 
     public void removePlayer(User player) {
-        this.players.remove(player);
+        this.members .remove(player);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class Team {
                 ", teamType='" + teamType + '\'' +
                 ", schedule=" + schedule +
                 ", capacity='" + capacity + '\'' +
-                ", players=" + players +
+                ", members =" + members  +
                 ", sportType='" + sportType + '\'' +
                 ", captain='" + captain + '\'' +
                 ", captainId='" + captainId + '\'' +
@@ -157,7 +157,7 @@ public class Team {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public int hashCode() {
-        return Objects.hash(name, teamId, division, teamType, schedule, capacity, players);
+        return Objects.hash(name, teamId, division, teamType, schedule, capacity, members );
     }
 
 }

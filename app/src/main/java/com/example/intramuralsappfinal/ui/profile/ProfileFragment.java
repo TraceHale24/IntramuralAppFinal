@@ -58,12 +58,12 @@ public class ProfileFragment extends Fragment {
                 //Toast.makeText(ProfileFragment.class, user, Toast.LENGTH_LONG).show();
                 //System.out.println("THIS IS YOUR PROFILE: " + user.toString());
                 currUser = user;
-                HashMap<String, UserTeam> teams = user.getTeams();
+                ArrayList<UserTeam> teams = new ArrayList<>();
                 ArrayList<UserTeam> userTeams = new ArrayList<>();
-                for(String id: teams.keySet()) {
-                   UserTeam temp = new UserTeam(teams.get(id).getName(),teams.get(id).getRole(),teams.get(id).getSportType(),teams.get(id).getTeamType());
-                   userTeams.add(temp);
-                }
+//                for(String id: teams.keySet()) {
+//                   UserTeam temp = new UserTeam(teams.get(id).getName(),teams.get(id).getRole(),teams.get(id).getSportType(),teams.get(id).getTeamType(), teams.get(id).getSchedule());
+//                   userTeams.add(temp);
+//                }
                 UserTeamAdapter uta = new UserTeamAdapter(getContext(),userTeams);
                 LinearLayoutManager llm = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(llm);
@@ -73,9 +73,9 @@ public class ProfileFragment extends Fragment {
                 if(currUser != null) {
                     name.setText(currUser.getName());
                     email.setText("Email: " + currUser.getEmail());
-                    netID.setText("NETID: " + currUser.getNetid());
+                    netID.setText("NETID: " + currUser.getNetId());
                     school.setText("School: " + currUser.getSchool());
-                    phoneNumber.setText("Phone: " + currUser.getPhoneNumber());
+                    phoneNumber.setText("Phone: " + currUser.getPhone());
                     gender.setText("Gender: " + currUser.getGender());
 
 

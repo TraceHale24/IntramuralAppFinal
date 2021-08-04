@@ -12,23 +12,23 @@ import java.util.Objects;
 
 public class User implements Serializable {
     private String name;
-    private String netid;
+    private String netId;
     private String email;
-    private String phoneNumber;
+    private String phone;
     private String gender;
     private String school;
-    private HashMap<String, UserTeam> teams;
+    private ArrayList<UserTeam> teams;
 
     public User() { }
 
-    public User(String name, String netId, String email, String phone, String gender, String school, HashMap<String, UserTeam> UserTeams) {
+    public User(String name, String netId, String email, String phone, String gender, String school, ArrayList<UserTeam> teams) {
         this.name = name;
-        this.netid = netId;
+        this.netId = netId;
         this.email = email;
-        this.phoneNumber = phone;
+        this.phone = phone;
         this.gender = gender;
         this.school = school;
-        this.teams = UserTeams;
+        this.teams = teams;
     }
 
     public String getName() {
@@ -39,12 +39,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getNetid() {
-        return netid;
+    public String getNetId() {
+        return netId;
     }
 
-    public void setNetid(String netid) {
-        this.netid = netid;
+    public void setNetId(String netId) {
+        this.netId = netId;
     }
 
     public String getEmail() {
@@ -55,12 +55,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getGender() {
@@ -79,43 +79,11 @@ public class User implements Serializable {
         this.school = school;
     }
 
-    public HashMap<String, UserTeam> getTeams() {
+    public ArrayList<UserTeam> getTeams() {
         return teams;
     }
 
-    public void setTeams(HashMap<String, UserTeam> UserTeams) {
-        this.teams = UserTeams;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-        if (!(o instanceof User)) {
-            return false;
-        }
-        User user = (User) o;
-        return netid.equals(user.netid);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, netid, email, phoneNumber, gender, school);
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", netid='" + netid + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", gender='" + gender + '\'' +
-                ", school='" + school + '\'' +
-                ", UserTeams=" + teams +
-                '}';
+    public void setTeams(ArrayList<UserTeam> teams) {
+        this.teams = teams;
     }
 }

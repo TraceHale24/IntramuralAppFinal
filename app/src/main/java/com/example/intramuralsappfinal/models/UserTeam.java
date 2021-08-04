@@ -1,21 +1,29 @@
 package com.example.intramuralsappfinal.models;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserTeam implements Serializable {
     private String name;
     private String role;
     private String sportType;
     private String teamType;
+    private String division;
+    private ArrayList<Event> schedule;
 
-    public UserTeam() {
-    }
-
-    public UserTeam(String name, String role, String sportType, String teamType) {
+    public UserTeam(String name, String role, String sportType, String teamType, String division,ArrayList<Event> schedule) {
         this.name = name;
         this.role = role;
         this.sportType = sportType;
         this.teamType = teamType;
+        this.division = division;
+        this.schedule = schedule;
+    }
+
+    public UserTeam() {
     }
 
     public String getName() {
@@ -50,9 +58,24 @@ public class UserTeam implements Serializable {
         this.teamType = teamType;
     }
 
+    public String getDivision() {
+        return division;
+    }
+
+    public void setDivision(String division) {
+        this.division = division;
+    }
+
+    public void setSchedule(ArrayList<Event> schedule) {
+        this.schedule = schedule;
+    }
 
     @Override
     public String toString() {
-        return  "Team: " + name + "\nRole: " + role + "\nSport Type: " + sportType + "\nTeam Type: " + teamType;
+        return "Name: " + name + "\n" +
+                "Role:" + role + '\n' +
+                "Sport:" + sportType + '\n' +
+                "Type: " + teamType + '\n' +
+                "Division: " + division + '\n';
     }
 }
