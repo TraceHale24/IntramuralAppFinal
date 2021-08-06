@@ -18,12 +18,12 @@ public class Team {
     private String sportType;
     private String captain;
     private String captainId;
-
+    private boolean isOpen;
     public Team() {
     }
 
     public Team(String name, String division, String  teamType, ArrayList<Event> schedule,
-                String  capacity, ArrayList<TeamMember> members , String sportType, String captain, String captainId) {
+                String  capacity, ArrayList<TeamMember> members , String sportType, String captain, String captainId, boolean isOpen) {
         this.teamId = UUID.randomUUID().toString();
         this.name = name;
         this.division = division;
@@ -34,9 +34,10 @@ public class Team {
         this.sportType = sportType;
         this.captain = captain;
         this.captainId = captainId;
+        this.isOpen = isOpen;
     }
 
-    public Team(String teamId, String name, String division, String teamType, ArrayList<Event> schedule, String capacity, ArrayList<TeamMember> members, String sportType, String captain, String captainId) {
+    public Team(String teamId, String name, String division, String teamType, ArrayList<Event> schedule, String capacity, ArrayList<TeamMember> members, String sportType, String captain, String captainId, boolean isOpen) {
         this.teamId = teamId;
         this.name = name;
         this.division = division;
@@ -47,6 +48,7 @@ public class Team {
         this.sportType = sportType;
         this.captain = captain;
         this.captainId = captainId;
+        this.isOpen = isOpen;
     }
 
     public String getCaptain() {
@@ -148,7 +150,8 @@ public class Team {
                 "Type: " + teamType + '\n' +
                 "Team Capacity: " + capacity + '\n' +
                 "Sport: " + sportType + '\n' +
-                "Captain: " + captain + '\n';
+                "Captain: " + captain + '\n' +
+                "isOpen: " + isOpen;
     }
 
     @Override

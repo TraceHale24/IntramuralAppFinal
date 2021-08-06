@@ -67,6 +67,11 @@ public class DashboardFragment extends Fragment {
                     String sportType = td.get("sportType").toString();
                     String captain = td.get("captain").toString();
                     String captainId = td.get("captainId").toString();
+                    String isOpenString = td.get("isOpen").toString();
+                    boolean isOpen = false;
+                    if(isOpenString.toLowerCase().equals("true")) {
+                        isOpen = true;
+                    }
                     ArrayList<TeamMember> members = new ArrayList<>();
                     Map<String, Object> roughMembers = (HashMap<String, Object>) td.get("members");
                     for (String memberId : roughMembers.keySet()) {
@@ -87,7 +92,8 @@ public class DashboardFragment extends Fragment {
                         Event temp = new Event(roughGames.get(scheduleKey).toString(), dateTime);
                         schedule.add(temp);
                     }
-                    Team nextTeam = new Team(teamId, name, division, teamType, schedule, capacity, members, sportType, captain, captainId);
+                    Team nextTeam = new Team(teamId, name, division, teamType, schedule, capacity, members, sportType, captain, captainId, isOpen
+                    );
                     teams.add(nextTeam);
                 }
                 TeamSearchAdapter tsa = new TeamSearchAdapter(getContext(), teams);
