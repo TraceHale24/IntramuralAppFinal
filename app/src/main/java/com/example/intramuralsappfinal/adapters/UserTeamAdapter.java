@@ -1,4 +1,4 @@
-package com.example.intramuralsappfinal;
+package com.example.intramuralsappfinal.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +10,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.intramuralsappfinal.R;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
-public class ScheduleAdapter extends RecyclerView.Adapter {
+public class UserTeamAdapter extends RecyclerView.Adapter {
     Context context;
     ArrayList arrayList;
 
-    public ScheduleAdapter(Context context, ArrayList arrayList) {
+    public UserTeamAdapter(Context context, ArrayList arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -24,15 +28,23 @@ public class ScheduleAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_schedule_item, parent, false);
-        ViewHolderClass vhc = new ViewHolderClass(view);
-        return vhc;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_user_team, parent, false);
+        ViewHolderClass viewHolderClass= new ViewHolderClass(view);
+
+        return viewHolderClass;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolderClass vhc = (ScheduleAdapter.ViewHolderClass) holder;
+        ViewHolderClass vhc = (ViewHolderClass) holder;
         vhc.textView.setText(arrayList.get(position).toString());
+        vhc.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Team Selected", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -42,10 +54,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter {
 
     public class ViewHolderClass extends RecyclerView.ViewHolder {
         TextView textView;
-
         public ViewHolderClass(@NonNull View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.nextGame);
+            textView = (TextView) itemView.findViewById(R.id.nextTeam);
         }
     }
 }

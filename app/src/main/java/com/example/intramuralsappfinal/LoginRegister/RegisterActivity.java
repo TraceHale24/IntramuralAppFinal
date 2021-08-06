@@ -17,7 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.intramuralsappfinal.MainActivity;
+import com.example.intramuralsappfinal.activities.MainActivity;
 import com.example.intramuralsappfinal.R;
 import com.example.intramuralsappfinal.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;

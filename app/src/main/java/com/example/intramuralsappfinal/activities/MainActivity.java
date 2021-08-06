@@ -1,4 +1,4 @@
-package com.example.intramuralsappfinal;
+package com.example.intramuralsappfinal.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.intramuralsappfinal.LoginRegister.LoginActivity;
+import com.example.intramuralsappfinal.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 

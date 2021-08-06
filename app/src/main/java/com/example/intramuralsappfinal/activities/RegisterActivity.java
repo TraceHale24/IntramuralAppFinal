@@ -1,4 +1,4 @@
-package com.example.intramuralsappfinal;
+package com.example.intramuralsappfinal.activities;
 
 
 import android.content.Intent;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.intramuralsappfinal.R;
 import com.example.intramuralsappfinal.models.User;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public void openLoginActivity() {
-        Intent intent = new Intent(this, com.example.intramuralsappfinal.LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

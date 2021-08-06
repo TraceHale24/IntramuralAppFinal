@@ -3,12 +3,11 @@ package com.example.intramuralsappfinal.ui.profile;
 import android.os.Bundle;
 
 import com.example.intramuralsappfinal.R;
-import com.example.intramuralsappfinal.ScheduleAdapter;
+import com.example.intramuralsappfinal.adapters.ScheduleAdapter;
 import com.example.intramuralsappfinal.models.Event;
 import com.example.intramuralsappfinal.models.Team;
 import com.example.intramuralsappfinal.models.User;
 import com.example.intramuralsappfinal.models.UserTeam;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,9 +27,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserTeamActivity extends AppCompatActivity {
