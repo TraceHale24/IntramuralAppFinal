@@ -38,8 +38,6 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private TextView name, email, netID, school, phoneNumber, gender;
-    private User currUser;
-    private RecyclerView recyclerView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -54,7 +52,6 @@ public class ProfileFragment extends Fragment {
         school = (TextView) view.findViewById(R.id.School);
         phoneNumber = (TextView) view.findViewById(R.id.PhoneNumber);
         gender = (TextView) view.findViewById(R.id.Gender);
-        recyclerView = (RecyclerView) view.findViewById(R.id.userTeams);
         mDatabase.getReference().child("users").child(userID).addValueEventListener(new ValueEventListener() {
 
 
@@ -88,12 +85,8 @@ public class ProfileFragment extends Fragment {
                     }
                     UserTeam temp = new UserTeam(teamName, role, sportType, teamType, division, teamId, schedule);
                     userTeams.add(temp);
-                    System.out.println(roughTeams.get(key));
                 }
-                UserTeamAdapter uta = new UserTeamAdapter(getContext(),userTeams);
-                LinearLayoutManager llm = new LinearLayoutManager(getContext());
-                recyclerView.setLayoutManager(llm);
-                recyclerView.setAdapter(uta);
+
 
             }
 
@@ -102,19 +95,8 @@ public class ProfileFragment extends Fragment {
 
             }
         }) ;
-
-
-
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
-
-        final TextView textView = view.findViewById(R.id.text_profile);
-        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText("TEAMS");
-            }
-        });
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -126,14 +108,6 @@ public class ProfileFragment extends Fragment {
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
         root = inflater.inflate(R.layout.fragment_profile, container, false);
-        final TextView textView = root.findViewById(R.id.text_profile);
-        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //name.setText(currUser.getName());
-                textView.setText(s);
-            }
-        });
         return root;
     }
 }

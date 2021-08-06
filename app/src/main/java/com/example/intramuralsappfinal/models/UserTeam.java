@@ -87,8 +87,8 @@ public class UserTeam implements Serializable {
     @Override
     public String toString() {
         return "Name: " + name + "\n" +
-                "Role:" + role + '\n' +
-                "Sport:" + sportType + '\n' +
+                "Role: " + role + '\n' +
+                "Sport: " + sportType + '\n' +
                 "Type: " + teamType + '\n' +
                 "Division: " + division + '\n';
     }

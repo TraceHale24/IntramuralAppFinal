@@ -14,7 +14,7 @@ public class Team {
     private String teamType;
     private ArrayList<Event> schedule;
     private String capacity;
-    private ArrayList<User> members ;
+    private ArrayList<TeamMember> members ;
     private String sportType;
     private String captain;
     private String captainId;
@@ -23,7 +23,7 @@ public class Team {
     }
 
     public Team(String name, String division, String  teamType, ArrayList<Event> schedule,
-                String  capacity, ArrayList<User> members , String sportType, String captain, String captainId) {
+                String  capacity, ArrayList<TeamMember> members , String sportType, String captain, String captainId) {
         this.teamId = UUID.randomUUID().toString();
         this.name = name;
         this.division = division;
@@ -31,6 +31,19 @@ public class Team {
         this.schedule = schedule;
         this.capacity = capacity;
         this.members  = members ;
+        this.sportType = sportType;
+        this.captain = captain;
+        this.captainId = captainId;
+    }
+
+    public Team(String teamId, String name, String division, String teamType, ArrayList<Event> schedule, String capacity, ArrayList<TeamMember> members, String sportType, String captain, String captainId) {
+        this.teamId = teamId;
+        this.name = name;
+        this.division = division;
+        this.teamType = teamType;
+        this.schedule = schedule;
+        this.capacity = capacity;
+        this.members = members;
         this.sportType = sportType;
         this.captain = captain;
         this.captainId = captainId;
@@ -110,36 +123,32 @@ public class Team {
         this.capacity = capacity;
     }
 
-    public ArrayList<User> getmembers () {
-        return this.members ;
+    public ArrayList<TeamMember> getMembers() {
+        return members;
     }
 
-    public void setmembers (ArrayList<User> members ) {
-        this.members  = members ;
+    public void setMembers(ArrayList<TeamMember> members) {
+        this.members = members;
     }
 
-    public void addPlayer(User player) {
-        this.members .add(player);
+    public void addPlayer(TeamMember player) {
+        this.members.add(player);
     }
 
-    public void removePlayer(User player) {
+    public void removePlayer(TeamMember player) {
         this.members .remove(player);
     }
 
     @Override
     public String toString() {
-        return "Team{" +
-                "teamId='" + teamId + '\'' +
-                ", name='" + name + '\'' +
-                ", division='" + division + '\'' +
-                ", teamType='" + teamType + '\'' +
-                ", schedule=" + schedule +
-                ", capacity='" + capacity + '\'' +
-                ", members =" + members  +
-                ", sportType='" + sportType + '\'' +
-                ", captain='" + captain + '\'' +
-                ", captainId='" + captainId + '\'' +
-                '}';
+        return
+
+                "Team Name: " + name + '\n' +
+                "Division: " + division + '\n' +
+                "Type: " + teamType + '\n' +
+                "Team Capacity: " + capacity + '\n' +
+                "Sport: " + sportType + '\n' +
+                "Captain: " + captain + '\n';
     }
 
     @Override

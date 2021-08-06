@@ -26,7 +26,7 @@ public class TeamSearchAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_search_team, parent);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.display_search_team, parent, false);
         ViewHolderClass vhc = new ViewHolderClass(view);
         return vhc;
     }
