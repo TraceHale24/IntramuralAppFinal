@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.intramuralsappfinal.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class TeamSearchAdapter extends RecyclerView.Adapter {
     Context context;
@@ -36,6 +38,8 @@ public class TeamSearchAdapter extends RecyclerView.Adapter {
         ViewHolderClass vhc = (ViewHolderClass) holder;
         vhc.textView.setText(arrayList.get(position).toString());
         vhc.itemView.setOnClickListener(new View.OnClickListener() {
+
+
 
             @Override
             public void onClick(View v) {
