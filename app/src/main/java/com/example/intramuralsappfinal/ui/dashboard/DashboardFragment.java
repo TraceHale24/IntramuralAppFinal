@@ -2,12 +2,15 @@ package com.example.intramuralsappfinal.ui.dashboard;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,12 +22,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.intramuralsappfinal.R;
-import com.example.intramuralsappfinal.adapters.ScheduleAdapter;
 import com.example.intramuralsappfinal.adapters.TeamSearchAdapter;
 import com.example.intramuralsappfinal.models.Event;
 import com.example.intramuralsappfinal.models.Team;
 import com.example.intramuralsappfinal.models.TeamMember;
-import com.example.intramuralsappfinal.models.User;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +47,13 @@ public class DashboardFragment extends Fragment{
     private RecyclerView recyclerView;
     private TeamSearchAdapter adapter;
     private ArrayList<Team> teams;
-
+    private EditText search;
+    private ArrayList<Team> filteredTeams;
+    private Spinner sportFilter;
+    private Spinner typeFilter;
+    private String sportStringFilter;
+    private String typeStringFilter;
+    private String searchStringFilter;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -53,6 +61,17 @@ public class DashboardFragment extends Fragment{
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         recyclerView = (RecyclerView) view.findViewById(R.id.teamsSearch);
+        search = view.findViewById(R.id.search_text);
+
+        sportFilter = (Spinner) view.findViewById(R.id.sport);
+        ArrayAdapter<CharSequence> sportAdapter = ArrayAdapter.createFromResource(getContext(), R.array.sports, android.R.layout.simple_spinner_item);
+        sportAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sportFilter.setAdapter(sportAdapter);
+
+        typeFilter = (Spinner) view.findViewById(R.id.type);
+        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(getContext(), R.array.types, android.R.layout.simple_spinner_item);
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeFilter.setAdapter(typeAdapter);
 
         setHasOptionsMenu(true);
         mDatabase.getReference().child("teams").addValueEventListener(new ValueEventListener() {
@@ -100,10 +119,62 @@ public class DashboardFragment extends Fragment{
                     );
                     teams.add(nextTeam);
                 }
-                adapter = new TeamSearchAdapter(getContext(), teams);
+
+                filteredTeams = new ArrayList<>();
+                filteredTeams.addAll(teams);
+                adapter = new TeamSearchAdapter(getContext(), filteredTeams);
                 LinearLayoutManager llm = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(llm);
                 recyclerView.setAdapter(adapter);
+
+                typeFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        filteredTeams.clear();
+                        typeStringFilter = parent.getItemAtPosition(position).toString();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                sportFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        filteredTeams.clear();
+                        sportStringFilter = parent.getItemAtPosition(position).toString();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                search.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        String text = search.getText().toString().toLowerCase();
+                        filteredTeams.clear();
+                        filter();
+
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
             }
 
             @Override
@@ -126,6 +197,15 @@ public class DashboardFragment extends Fragment{
             }
         });
         return root;
+    }
+
+    private void filter() {
+        filteredTeams.clear();
+        for(Team team : teams) {
+            if (team.getSportType().contains(sportStringFilter) && team.getTeamType().contains(typeStringFilter) && team.toString().contains(searchStringFilter)) {
+                filteredTeams.add(team);
+            }
+        }
     }
 
 }

@@ -12,6 +12,21 @@
         <item>USU</item>
         <item>SUU</item>
     </string-array>
+
+    <string-array name="sports">
+        <item> </item>
+        <item>Basketball</item>
+        <item>Soccer</item>
+        <item>Tennis Doubles</item>
+    </string-array>
+
+    <string-array name="types">
+        <item> </item>
+        <item>Female</item>
+        <item>Co-Ed</item>
+        <item>Male</item>
+    </string-array>
+
     <string name="title_activity_profile">ProfileActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

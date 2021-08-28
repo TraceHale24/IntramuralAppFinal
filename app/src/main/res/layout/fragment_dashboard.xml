@@ -7,6 +7,27 @@
     tools:context=".ui.dashboard.DashboardFragment"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/search_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"></EditText>
+
+    <Spinner
+        android:layout_width="200sp"
+        android:layout_height="50sp"
+        android:id="@+id/sport"
+        android:text="Filter by Sport"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <Spinner
+        android:layout_width="200sp"
+        android:layout_height="50sp"
+        android:id="@+id/type"
+        android:text="Filter by Type"
+        android:layout_gravity="center"
+        android:gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/teamsSearch"
